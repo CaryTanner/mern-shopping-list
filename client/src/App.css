@@ -1,0 +1,25 @@
+.fade-enter{
+ opacity: 0.1
+}
+
+.fade-enter-active{
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+  -webkit-transition: opacity 500ms ease-in;
+  -moz-transition: opacity 500ms ease-in;
+  -ms-transition: opacity 500ms ease-in;
+  -o-transition: opacity 500ms ease-in;
+}
+
+.fade-exit{
+ opacity: 1;
+}
+
+.fade-exit-active{
+ opacity: 0.1;
+ transition: opacity 500ms ease-in;
+ -webkit-transition: opacity 500ms ease-in;
+ -moz-transition: opacity 500ms ease-in;
+ -ms-transition: opacity 500ms ease-in;
+ -o-transition: opacity 500ms ease-in;
+}
