@@ -68,9 +68,7 @@ import {
                 { error  ? <Alert color='danger'>
                     {error ? error.msg : null}
                   </Alert> : null}
-                  { isAuthenticated  ? <Alert color='success'>
-                    Logged in as: {user.name}
-                  </Alert> : null}
+                  
                     <Form onSubmit={onSubmit}>
                         <FormGroup>
                             <Label for="name">Name</Label>

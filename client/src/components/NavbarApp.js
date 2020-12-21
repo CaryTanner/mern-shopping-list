@@ -16,11 +16,38 @@ import { useSelector } from "react-redux";
 
 export default function NavbarApp() {
   const [isOpen, setIsOpen] = useState(false);
-  const {isAuthenticated, user} = useSelector(state => state.auth)
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
 
   const toggleOpen = () => {
     setIsOpen((isOpen) => !isOpen);
   };
+
+  const loggedIn = (
+    <>
+    <NavItem>
+        <span className="navbar-text mr-3">
+          <strong>
+            {isAuthenticated && user ? `Welcome ${user.name}` : ""}
+          </strong>
+        </span>
+      </NavItem>
+      <NavItem>
+        <LogoutModal />
+      </NavItem>
+      
+    </>
+  );
+
+  const guestLinks = (
+    <>
+      <NavItem>
+        <RegisterModal />
+      </NavItem>
+      <NavItem>
+        <LoginModal />
+      </NavItem>
+    </>
+  );
 
   return (
     <>
@@ -30,25 +57,7 @@ export default function NavbarApp() {
           <NavbarToggler onClick={toggleOpen} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink href="https://github.com/carytanner">GitHub</NavLink>
-              </NavItem>
-              <NavItem>
-                <RegisterModal />
-              </NavItem>
-              <NavItem>
-                <LoginModal />
-              </NavItem>
-              <NavItem>
-                <LogoutModal />
-              </NavItem>
-              <NavItem>
-                <span className="navbar-text mr-3">
-                  <strong>
-                    {isAuthenticated && user ? `Welcome ${user.name}` : ""}
-                  </strong>
-                </span>
-              </NavItem>
+              {isAuthenticated ? loggedIn : guestLinks}
             </Nav>
           </Collapse>
         </Container>

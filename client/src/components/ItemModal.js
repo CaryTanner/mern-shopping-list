@@ -16,7 +16,7 @@ import {
  
 
   export default function ItemModal(){
-    const {token} = useSelector(state => state.auth)
+    const {token, isAuthenticated} = useSelector(state => state.auth)
     const {error, status} = useSelector(state => state.items) 
     
     // logical for modal
@@ -45,7 +45,9 @@ import {
             <Button 
                 style={{marginBottom: "2rem"}} 
                 color="dark" 
-                onClick={toggleModal}>Add Item</Button>
+                onClick={toggleModal}
+                disabled={isAuthenticated ? false : true }
+                >Add Item</Button>
 
                 <Modal isOpen={isOpen} toggle={toggleModal}>
                 <ModalHeader toggle={toggleModal}>Add to Shopping List</ModalHeader>
