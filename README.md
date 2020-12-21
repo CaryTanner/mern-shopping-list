@@ -25,7 +25,7 @@ URI to Mongo DB Atlas and the JWT Secret
 Contribute
 ----------
 
-- Please feel free to come with ideas and feedback!
+Please feel free to come with ideas and feedback!
 
 
 

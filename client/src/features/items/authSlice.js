@@ -6,19 +6,19 @@ import * as authAPI from "../../api/authAPI";
 
 const loadUserThunk = createAsyncThunk("auth/loadUserThunk", async (token) => {
     const resp = await authAPI.loadUser(token);
-  console.log(resp);
+ 
   return resp;
 });
 
 const registerUserThunk = createAsyncThunk("auth/registerUserThunk", async (userInfo) => {
     const resp = await authAPI.registerUser(userInfo);
-  console.log(resp);
+ 
   return resp;
 });
 
 const loginUserThunk = createAsyncThunk("auth/loginUserThunk", async (userInfo) => {
     const resp = await authAPI.loginUser(userInfo);
-  console.log(resp);
+  
   return resp;
 });
 

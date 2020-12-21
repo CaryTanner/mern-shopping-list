@@ -39,7 +39,7 @@ import {
 // submit and send to redux store & DB 
     const dispatch = useDispatch()
     const onSubmit = async (event)=> {
-        console.log(name + email + password)
+       
        event.preventDefault()
         dispatch(asyncAuthActions.registerUserThunk({name, email, password}))
     }

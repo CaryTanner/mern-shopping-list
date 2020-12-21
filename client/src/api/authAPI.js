@@ -46,7 +46,7 @@ export const  loadUser = async (token) => {
     const resp = await axios.post('/api/users', body, config)
     return resp 
 } catch (e) {
-    console.log(e.response)
+    
     return (e.response)
 }
 
@@ -70,7 +70,7 @@ export const  loadUser = async (token) => {
     const resp = await axios.post('/api/auth/user/login', body, config)
     return resp 
 } catch (e) {
-    console.log(e.response)
+    
     return (e.response)
 }
 
