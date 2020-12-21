@@ -7,14 +7,17 @@ import {
     Form,
     FormGroup,
     Label,
-    Input
+    Input,
+    Alert
   } from 'reactstrap';
 
-  import { useDispatch } from 'react-redux'
-  import { addItem } from '../features/items/itemsSlice'
+  import { useDispatch, useSelector } from 'react-redux'
+  import { addItem, asyncActions } from '../features/items/itemsSlice'
+ 
 
   export default function ItemModal(){
-      
+    const {token} = useSelector(state => state.auth)
+    const {error, status} = useSelector(state => state.items) 
     
     // logical for modal
     let [isOpen, setIsOpen] = useState(false)
@@ -30,7 +33,7 @@ import {
     const dispatch = useDispatch()
     const onSubmit = (event)=>{
        event.preventDefault()
-       dispatch(addItem({name: inputName}))
+       dispatch(asyncActions.addItemThunk({name: inputName, token}))
         toggleModal()
         setInputName('')
        
@@ -47,6 +50,9 @@ import {
                 <Modal isOpen={isOpen} toggle={toggleModal}>
                 <ModalHeader toggle={toggleModal}>Add to Shopping List</ModalHeader>
                 <ModalBody>
+                { error  ? <Alert color='danger'>
+                    {error ? status : null}
+                  </Alert> : null}
                     <Form onSubmit={onSubmit}>
                         <FormGroup>
                             <Label for="item">Item</Label>

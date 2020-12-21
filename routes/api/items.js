@@ -1,5 +1,6 @@
 import * as express from "express";
 import { Router } from "express";
+import {auth} from '../../middleware/auth'
 const router = Router();
 
 import Item from "../../models/Item";
@@ -17,9 +18,9 @@ router.get('/', (req, res) => {
 
 // @route POST /api/items
 // make new item
-// access Public
+// access private
 
-router.post('/', (req, res) => {
+router.post('/', auth, (req, res) => {
     let newItem = new Item({
         name: req.body.name
     })
@@ -30,11 +31,11 @@ router.post('/', (req, res) => {
 
   // @route DELETE /api/items
 // delete an item
-// access Public
+// access Private
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', auth, (req, res) => {
     Item.findById(req.params.id)
-    .then(item => item.remove().then(()=> res.json({success: true})) )
+    .then(item => item.remove().then(()=> res.json({success: true, id: req.params.id})) )
     .catch(err => res.status(401).json({success: false}))
 });
 

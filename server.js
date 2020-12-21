@@ -1,6 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
+// import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import * as path from 'path'
 
@@ -10,17 +10,24 @@ dotenv.config();
 const PORT = process.env.PORT || 5000
 const db = process.env.MONGODB_URI
 
-import itemRoutes from './routes/api/items'
+
 
 
 const app = express()
 
 //middleware
-app.use(bodyParser.json())
+app.use(express.json())
 
 //routes
+import itemRoutes from './routes/api/items'
+import userRoutes from './routes/api/users'
+import authRoutes from './routes/api/auth'
 
 app.use('/api/items', itemRoutes)
+app.use('/api/users', userRoutes)
+app.use('/api/auth', authRoutes)
+
+
 
 //serve static routes in production
 if(process.env.NODE_ENV === 'production'){
@@ -33,7 +40,7 @@ if(process.env.NODE_ENV === 'production'){
 
 
 
-mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true  })
+mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true  })
     .then(()=> console.log('mongodb connected'))
     .catch(err => console.log(err))
 

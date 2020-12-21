@@ -4,9 +4,10 @@ import axios from 'axios'
 
 export const fetchItems = async () => {
     console.log('fetching all items')
+    
     try {
      const response = await axios('/api/items')
-        console.log(response)
+       
         return response.data
         
     } catch (err) {
@@ -16,6 +17,7 @@ export const fetchItems = async () => {
 
 export const addItemAPI = async (name) => {
     console.log('adding item')
+
     try {
      const response = await axios.post('/api/items', {name})
         console.log(response)
